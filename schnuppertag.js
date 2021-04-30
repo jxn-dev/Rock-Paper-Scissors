@@ -10,7 +10,7 @@ function score() {
 setInterval(score, 50);
 //Anzeige der Auswahl
 function convert(word) {
-    if (word === "Paper") return '<i class="far fa-hand-paper"></i>';
+    if (word === "paper") return '<i class="far fa-hand-paper"></i>';
     if (word === "rock") return '<i class="far fa-hand-rock"></i>';
     return '<i class="far fa-hand-scissors"></i>';
 }
@@ -19,9 +19,9 @@ function game(UserChoice) {
     var box = document.getElementById("challenge");
     box.style.display = "inline-flex";
     var userDiv = document.getElementById("YourObject");
-    userDiv.innerHTML = covert(UserChoice);
+    userDiv.innerHTML = convert(UserChoice);
     var comDiv = document.getElementById("ComObject");
-    comDiv.innerHTML = covert(ComChoice);
+    comDiv.innerHTML = convert(ComChoice);
     /**
      * TODO: Gameabfragen
      */
@@ -33,41 +33,36 @@ function game(UserChoice) {
     setTimeout(continuGame, 1200);
 }
 function win(bn) {
-    //UserPoints aktualisieren und in HTML schreiben
-
-    //Grüner Ring um User-Auswahl
-    var bn = document.getElementById(bn);
-    bn.classList.remove("bn");
-    bn.classList.add("red");
-    //Grünen Ring nach 1.2sec entfernen
-    setTimeout(() => {
-        bn.classList.add("bn");
-        bn.classList.remove("red");
-    }, 1200);
-}
-function draw(bn) {
-    //HTML Text anzeigen
-
-    //Grauer Ring um User-Auswahl
+    UserPoints++;
+    document.getElementById("who").innerHTML = "You win!";
     var bn = document.getElementById(bn);
     bn.classList.remove("bn");
     bn.classList.add("green");
-    //Grauen Ring nach 1.2sec entfernen
+    //Grünen Ring nach 1.2sec entfernen
     setTimeout(() => {
         bn.classList.add("bn");
         bn.classList.remove("green");
     }, 1200);
 }
-function lose(bn) {
-    //Com Points aktualisieren und HTML ausgeben
-    
-    //Roter Ring um User-Auswahl
+function draw(bn) {
+    document.getElementById("who").innerHTML = "It's a Draw.";
     var bn = document.getElementById(bn);
     bn.classList.remove("bn");
     bn.classList.add("gray");
-    //Roten Ring nach 1.2sec entfernen
+    //Grauen Ring nach 1.2sec entfernen
     setTimeout(() => {
         bn.classList.add("bn");
         bn.classList.remove("gray");
-    }, 12000);
+    }, 1200);
+}
+function lose(bn) {
+    ComPoints++;
+    document.getElementById("who").innerHTML = "You lose...";
+    var bn = document.getElementById(bn);
+    bn.classList.remove("bn");
+    bn.classList.add("red");
+    setTimeout(() => {
+        bn.classList.add("bn");
+        bn.classList.remove("red");
+    }, 1200);
 }
