@@ -1,7 +1,8 @@
 /**
  * TODO: Variablen
  */
- 
+var UserPoints = 0;
+var ComPoints = 0;
 //Für Anzeige des Scores
 function score() {
     var score_div = (document.getElementById("score").innerHTML =
